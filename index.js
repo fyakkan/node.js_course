@@ -1,18 +1,21 @@
 const express = require("express");
 const app = express();
-app.listen(3000, () => {
-//routes
+
+app.set("view engine","ejs");
+
+  //routes
   app.use("/products/:id", function (req, res) {
-    res.send("product details "+req.params.id);
+    res.render("product-details");
 
   });
   app.use("/products", function (req, res) {
-    res.send("products");
+    res.render("products");
   });
   app.use("/", function (req, res) {
-    res.send("homePage");
+    res.render("index");
   });
 
+  app.listen(3000, () => {
+    console.log("listening on port 3000");
+  })
 
-  console.log("listening on port 3000");
-})
